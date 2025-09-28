@@ -5,15 +5,40 @@
     <title>Hong Kong Interactive Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
-        #map { height: 500px; width: 100%; margin: 20px auto; max-width: 800px; }
-        body { font-family: Arial, sans-serif; background: #f4f4f9; text-align: center; }
-        #selection { font-size: 1.2em; margin: 20px 0; color: #333; }
+        body { font-family: Arial, sans-serif; background: #f4f4f9; margin: 0; padding: 20px; }
+        .container { display: flex; gap: 20px; max-width: 1800px; margin: 0 auto; }
+        #map { height: 600px; width: 70%; }
+        #info-panel { width: 30%; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        #refresh-btn { margin-top: 15px; padding: 10px 20px; background: #007cba; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        #refresh-btn:hover { background: #005a87; }
+        #refresh-btn:disabled { background: #ccc; cursor: not-allowed; }
+        #selection { font-size: 1.2em; margin: 20px 0; color: #333; text-align: center; }
+        #coordinates {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            color: #333;
+        }
     </style>
 </head>
 <body>
-    <h1>Hong Kong Interactive Map</h1>
-    <div id="map"></div>
+    <h1 style="text-align: center;">Hong Kong Interactive Map</h1>
+    <div class="container">
+        <div id="map">
+            <div id="coordinates">Click on the map to see coordinates</div>
+        </div>
+        <div id="info-panel">
+            <h3>Guess the Location!</h3>
+            <div id="location-details">Click on the map where you think the location is.</div>
+            <button id="refresh-btn" onclick="startNewGame()" disabled>New Game</button>
+        </div>
+    </div>
     <div id="selection"></div>
+    <div id="clicked-coordinates"></div>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="script.js"></script>
 </body>
