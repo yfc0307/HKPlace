@@ -131,7 +131,7 @@ function endGame() {
     if (gameLevel === 1 && percentage >= 60) {
         resultsHtml += '<div class="mt-2">🎉 Level 2 Unlocked!</div>';
         document.getElementById('location-details').innerHTML = resultsHtml;
-        document.getElementById('refresh-btn').textContent = 'Level 2';
+        document.getElementById('refresh-btn').textContent = 'Next Level';
         document.getElementById('refresh-btn').onclick = startLevel2;
     } else {
         document.getElementById('location-details').innerHTML = resultsHtml;
