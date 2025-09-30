@@ -1,15 +1,14 @@
-name,lat,lng
-Tsim Sha Tsui,22.296,114.1719
-Stanley,22.2191,114.2118
-Causeway Bay,22.2801,114.1884
-Sai Kung,22.383,114.2722
-Tuen Mun,22.39,113.9721
-Hong Kong Disneyland,22.3125,114.0419
-North Point,22.291,114.2004
-Kwun Tong,22.3103,114.2226
-Tsuen Wan,22.3715,114.1155
-Tai Koo Shing,22.2867,114.2158
-Mong Kok,22.3192,114.1693
-Yuen Long,22.4445,114.0272
-Aberdeen,22.2483,114.1547
-Tseung Kwan O,22.3076,114.2598
+name,lat,lng,description
+Tsim Sha Tsui,22.296,114.1719,"Vibrant waterfront district with stunning harbor views, luxury shopping, museums, and the iconic Avenue of Stars promenade."
+Stanley,22.2191,114.2118,"Charming seaside town famous for its weekend market, beautiful beaches, and colonial architecture with a relaxed atmosphere."
+Causeway Bay,22.2801,114.1884,"Bustling shopping paradise with Times Square, trendy boutiques, restaurants, and vibrant nightlife in the heart of Hong Kong."
+Sai Kung,22.383,114.2722,"Scenic fishing village known as Hong Kong's back garden, offering fresh seafood, hiking trails, and pristine beaches."
+Tuen Mun,22.39,113.9721,"Modern new town featuring shopping malls, parks, and the historic Ching Chung Koon Temple with traditional Chinese architecture."
+Hong Kong Disneyland,22.3125,114.0419,"Magical theme park on Lantau Island featuring Disney characters, thrilling rides, and enchanting shows for all ages."
+North Point,22.291,114.2004,"Local residential area with authentic street food, traditional markets, and a glimpse into everyday Hong Kong life."
+Kwun Tong,22.3103,114.2226,"Industrial district transforming into a creative hub with art galleries, trendy cafes, and innovative co-working spaces."
+Tsuen Wan,22.3715,114.1155,"Gateway to the New Territories with shopping centers, traditional temples, and easy access to hiking trails."
+Tai Koo Shing,22.2867,114.2158,"Upscale residential complex with modern shopping mall, international dining options, and convenient MTR connections."
+Mong Kok,22.3192,114.1693,"Dense urban district famous for street markets, neon signs, local snacks, and authentic Hong Kong street culture."
+Yuen Long,22.4445,114.0272,"Traditional market town in the New Territories known for dim sum, wet markets, and preserved historical buildings."
+Aberdeen,22.2483,114.1547,"Historic fishing village with floating restaurants, sampan rides, and Ocean Park nearby offering marine adventures."

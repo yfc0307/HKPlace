@@ -107,10 +107,13 @@ function nextRound() {
     displaySelection('');
     document.getElementById('clicked-coordinates').textContent = '';
     
-    // Update button
+    // Update buttons
     var btn = document.getElementById('refresh-btn');
     btn.textContent = 'Next';
     btn.disabled = true;
+    
+    // Hide Learn more button
+    document.getElementById('learn-btn').style.display = 'none';
     
     hasGuessed = false;
 }
@@ -140,6 +143,14 @@ function endGame() {
     }
     
     document.getElementById('refresh-btn').disabled = false;
+    
+    // Hide Learn more button
+    document.getElementById('learn-btn').style.display = 'none';
+}
+
+// Learn more function
+function learnMore() {
+    window.open(`study.html?location=${encodeURIComponent(currentLocation.name)}`, '_blank');
 }
 
 // Initialize game after loading locations
@@ -211,9 +222,13 @@ map.on('click', function(e) {
     
     currentRound++;
     
-    // Enable Next button
+    // Enable Next button and show Learn more button
     document.getElementById('refresh-btn').disabled = false;
     document.getElementById('refresh-btn').onclick = nextRound;
+    
+    var learnBtn = document.getElementById('learn-btn');
+    learnBtn.textContent = `Learn more about ${currentLocation.name}`;
+    learnBtn.style.display = 'block';
     
     // Smooth zoom animation to show both points
     var bounds = L.latLngBounds([clickedLocation, currentLocation.coords]);

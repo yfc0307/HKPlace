@@ -72,23 +72,34 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
 }
 
-#refresh-btn { 
+#refresh-btn, #learn-btn { 
     margin-top: 15px; 
     padding: 10px 20px; 
     background: #007cba; 
     color: white; 
     border: none; 
     border-radius: 5px; 
-    cursor: pointer; 
+    cursor: pointer;
+    width: 100%;
+    display: block;
 }
 
-#refresh-btn:hover { 
+#refresh-btn:hover, #learn-btn:hover { 
     background: #005a87; 
 }
 
 #refresh-btn:disabled { 
     background: #ccc; 
     cursor: not-allowed; 
+}
+
+#learn-btn {
+    background: #28a745;
+    margin-top: 10px;
+}
+
+#learn-btn:hover {
+    background: #218838;
 }
 
 #selection { 

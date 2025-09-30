@@ -25,8 +25,29 @@ function loadLocations() {
         .then(data => {
             const lines = data.trim().split('\n');
             for (let i = 1; i < lines.length; i++) {
-                const [name, lat, lng] = lines[i].split(',');
-                locations.push({ name, coords: [parseFloat(lat), parseFloat(lng)] });
+                const line = lines[i];
+                const parts = [];
+                let current = '';
+                let inQuotes = false;
+                
+                for (let j = 0; j < line.length; j++) {
+                    const char = line[j];
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        parts.push(current);
+                        current = '';
+                    } else {
+                        current += char;
+                    }
+                }
+                parts.push(current);
+                
+                const name = parts[0];
+                const lat = parseFloat(parts[1]);
+                const lng = parseFloat(parts[2]);
+                const description = parts[3] || '';
+                locations.push({ name, coords: [lat, lng], description });
             }
         });
     
@@ -35,10 +56,35 @@ function loadLocations() {
         .then(data => {
             const lines = data.trim().split('\n');
             for (let i = 1; i < lines.length; i++) {
-                const [name, lat, lng, district_lat, district_lng] = lines[i].split(',');
+                const line = lines[i];
+                const parts = [];
+                let current = '';
+                let inQuotes = false;
+                
+                for (let j = 0; j < line.length; j++) {
+                    const char = line[j];
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        parts.push(current);
+                        current = '';
+                    } else {
+                        current += char;
+                    }
+                }
+                parts.push(current);
+                
+                const name = parts[0];
+                const lat = parseFloat(parts[1]);
+                const lng = parseFloat(parts[2]);
+                const district_lat = parseFloat(parts[3]);
+                const district_lng = parseFloat(parts[4]);
+                const description = parts[5] || '';
                 level2Locations.push({ 
                     name, 
-                    coords: [parseFloat(lat), parseFloat(lng)] 
+                    coords: [lat, lng],
+                    district_coords: [district_lat, district_lng],
+                    description
                 });
             }
         });
@@ -68,8 +114,8 @@ function displayAllLocations() {
             const imagePath = `img/${location.name}.jpg`;
             document.getElementById('location-info').innerHTML = `
                 <h1>${location.name}</h1>
-                <img src="${imagePath}" alt="${location.name}" style="width: 100%; max-width: 300px; height: auto; margin: 10px 0; border-radius: 5px;" onerror="this.style.display='none'">
-                <p>Information about ${location.name} will be displayed here.</p>
+                <img src="${imagePath}" alt="${location.name}" style="width: 100%; height: auto; margin: 10px 0; border-radius: 5px;" onerror="this.style.display='none'">
+                <p>${location.description || 'Information about ' + location.name + ' will be displayed here.'}</p>
             `;
             map.setView(location.coords, 15);
         });
@@ -90,4 +136,24 @@ map.on('click', function(e) {
 // Initialize study mode
 loadLocations().then(() => {
     displayAllLocations();
+    
+    // Check for location parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const locationName = urlParams.get('location');
+    if (locationName) {
+        // Find and click the specified location
+        const allLocations = [...locations, ...level2Locations];
+        const targetLocation = allLocations.find(loc => loc.name === locationName);
+        if (targetLocation) {
+            setTimeout(() => {
+                const imagePath = `img/${targetLocation.name}.jpg`;
+                document.getElementById('location-info').innerHTML = `
+                    <h1>${targetLocation.name}</h1>
+                    <img src="${imagePath}" alt="${targetLocation.name}" style="width: 100%; height: auto; margin: 10px 0; border-radius: 5px;" onerror="this.style.display='none'">
+                    <p>${targetLocation.description || 'Information about ' + targetLocation.name + ' will be displayed here.'}</p>
+                `;
+                map.setView(targetLocation.coords, 15);
+            }, 500);
+        }
+    }
 });

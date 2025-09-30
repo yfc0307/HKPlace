@@ -1,16 +1,16 @@
-name,lat,lng,district_lat,district_lng
-Time Square,22.2794,114.1822,22.2801,114.1884
-Kai Tak Stadium,22.3223,114.1973,22.3281,114.2021
-Hong Kong Observation Wheel,22.2853,114.1617,22.2819,114.1582
-Happy Valley Racecourse,22.2728,114.182,22.2683,114.1865
-Hong Kong Ocean Park,22.2466,114.1757,22.2305,114.1855
-Repulse Bay,22.2366,114.1963,22.2305,114.1855
-Lei Yue Mun,22.2924,114.2382,22.298,114.2369
-Golden Bauhinia Square,22.2842,114.1738,22.2801,114.1884
-Lan Kwai Fong,22.2808,114.1556,22.2795,114.1469
-Hong Kong Palace Museum,22.3015,114.1552,22.3116,114.1751
-Central Market,22.284,114.1554,22.2795,114.1469
-Choi Hung Estate,22.3344,114.2072,22.3281,114.2021
-Wong Tai Sin Temple,22.3425,114.1932,22.3281,114.2021
-Shek O,22.2287,114.251,22.2237,114.228
-The Peak Tower,22.2711,114.1499,22.2795,114.1469
+name,lat,lng,district_lat,district_lng,description
+Time Square,22.2794,114.1822,22.2801,114.1884,"Major shopping mall in Causeway Bay with luxury brands, restaurants, and the iconic digital clock tower."
+Kai Tak Stadium,22.3223,114.1973,22.3281,114.2021,"Modern sports complex built on the former airport site, hosting major sporting events and concerts."
+Hong Kong Observation Wheel,22.2853,114.1617,22.2819,114.1582,"Giant ferris wheel offering panoramic harbor views and a romantic experience day or night."
+Happy Valley Racecourse,22.2728,114.182,22.2683,114.1865,"Historic horse racing venue surrounded by skyscrapers, offering thrilling races and dining experiences."
+Hong Kong Ocean Park,22.2466,114.1757,22.2305,114.1855,"Marine-themed amusement park with roller coasters, animal exhibits, and spectacular ocean views."
+Repulse Bay,22.2366,114.1963,22.2305,114.1855,"Crescent-shaped beach with golden sand, upscale shopping, and colonial-style architecture nearby."
+Lei Yue Mun,22.2924,114.2382,22.298,114.2369,"Traditional fishing village famous for fresh seafood restaurants and stunning harbor sunset views."
+Golden Bauhinia Square,22.2842,114.1738,22.2801,114.1884,"Waterfront plaza featuring the golden bauhinia sculpture and daily flag-raising ceremony."
+Lan Kwai Fong,22.2808,114.1556,22.2795,114.1469,"Famous nightlife district with bars, clubs, and international restaurants in narrow cobblestone streets."
+Hong Kong Palace Museum,22.3015,114.1552,22.3116,114.1751,"World-class museum showcasing Chinese art and culture with stunning architecture and harbor views."
+Central Market,22.284,114.1554,22.2795,114.1469,"Revitalized heritage building now housing trendy shops, cafes, and cultural spaces in Central."
+Choi Hung Estate,22.3344,114.2072,22.3281,114.2021,"Colorful public housing estate famous for its rainbow-painted facade and Instagram-worthy basketball court."
+Wong Tai Sin Temple,22.3425,114.1932,22.3281,114.2021,"Popular Taoist temple known for fortune-telling and granting wishes, especially for horse racing luck."
+Shek O,22.2287,114.251,22.2237,114.228,"Secluded beach village with pristine sand, seafood restaurants, and a laid-back surfing culture."
+The Peak Tower,22.2711,114.1499,22.2795,114.1469,"Iconic observation deck atop Victoria Peak offering breathtaking 360-degree views of Hong Kong skyline."
