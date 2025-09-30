@@ -67,7 +67,7 @@ function displayAllLocations() {
         marker.on('click', function() {
             const imagePath = `img/${location.name}.jpg`;
             document.getElementById('location-info').innerHTML = `
-                <h6>${location.name}</h6>
+                <h1>${location.name}</h1>
                 <img src="${imagePath}" alt="${location.name}" style="width: 100%; max-width: 300px; height: auto; margin: 10px 0; border-radius: 5px;" onerror="this.style.display='none'">
                 <p>Information about ${location.name} will be displayed here.</p>
             `;
@@ -83,7 +83,7 @@ map.on('click', function(e) {
     // Check if click was not on a marker
     if (!e.originalEvent.target.closest('.leaflet-marker-icon')) {
         map.setView([22.3640, 114.1150], 11);
-        document.getElementById('location-info').innerHTML = 'Click on any marker to learn about the location.';
+        document.getElementById('location-info').innerHTML = '<h4>Click on any marker to learn about the location.</h4>';
     }
 });
 
