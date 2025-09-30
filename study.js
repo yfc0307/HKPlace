@@ -65,8 +65,10 @@ function displayAllLocations() {
         
         // Add click event to show info in right panel and zoom to location
         marker.on('click', function() {
+            const imagePath = `img/${location.name}.jpg`;
             document.getElementById('location-info').innerHTML = `
                 <h6>${location.name}</h6>
+                <img src="${imagePath}" alt="${location.name}" style="width: 100%; max-width: 300px; height: auto; margin: 10px 0; border-radius: 5px;" onerror="this.style.display='none'">
                 <p>Information about ${location.name} will be displayed here.</p>
             `;
             map.setView(location.coords, 15);
