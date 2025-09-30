@@ -210,6 +210,7 @@ map.on('click', function(e) {
     
     // Display clicked coordinates
     var coords = `Clicked: Lat ${e.latlng.lat.toFixed(5)}, Lng ${e.latlng.lng.toFixed(5)}`;
+    document.getElementById('clicked-coordinates').textContent = coords;
     
     // Record result
     var success = distanceKm < successThreshold;
