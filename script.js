@@ -31,7 +31,7 @@ var gameLevel = 1;
 
 // Load locations from separate CSV files
 function loadLocations() {
-    const loadLevel1 = fetch('level1_locations.csv')
+    const loadLevel1 = fetch('data/level1_locations.csv')
         .then(response => response.text())
         .then(data => {
             const lines = data.trim().split('\n');
@@ -41,7 +41,7 @@ function loadLocations() {
             }
         });
     
-    const loadLevel2 = fetch('level2_locations.csv')
+    const loadLevel2 = fetch('data/level2_locations.csv')
         .then(response => response.text())
         .then(data => {
             const lines = data.trim().split('\n');
