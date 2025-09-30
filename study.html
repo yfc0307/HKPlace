@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HKPlace - Study</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-light">
+    <nav class="navbar">
+        <h1><a href="index.html">HKPlace</a></h1>
+        <div>
+            <a href="index.html" class="game-btn">Game</a>
+            <a href="study.html" class="study-btn">Study</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div id="map">
+            <div id="coordinates">Click on the map to see coordinates</div>
+        </div>
+        <div id="info-panel">
+            <h3>Click on any marker to learn about the location.</h3>
+            <div id="location-info">Click on the map where you think the location is.</div>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="study.js"></script>
+</body>
+</html>

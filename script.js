@@ -16,15 +16,9 @@ function displaySelection(text) {
     document.getElementById('selection').textContent = text;
 }
 
-// All locations
-var locations = [
-    { name: "Tsim Sha Tsui", coords: [22.2960, 114.1719] },
-    { name: "Stanley", coords: [22.2191, 114.2118] },
-    { name: "Causeway Bay", coords: [22.2801, 114.1884] },
-    { name: "Sai Kung", coords: [22.3830, 114.2722] },
-    { name: "Tuen Mun", coords: [22.3900, 113.9721] },
-    { name: "Hong Kong Disneyland", coords: [22.3125, 114.0419] }
-];
+// Location data arrays (loaded from CSV)
+var locations = [];
+var level2Locations = [];
 
 var currentLocation = null;
 var guessMarker = null;
@@ -35,13 +29,34 @@ var currentRound = 0;
 var gameResults = [];
 var gameLevel = 1;
 
-// Level 2 locations
-var level2Locations = [
-    { name: "Time Square", district_coords: [22.2801, 114.1884], coords: [22.2794, 114.1822] },
-    { name: "Kai Tak Stadium", district_coords: [22.3281, 114.2021], coords: [22.3223, 114.1973] },
-    { name: "Hong Kong Observation Wheel", district_coords: [22.2819, 114.1582], coords: [22.2853, 114.1617] },
-    { name: "Happy Valley Racecourse", district_coords: [22.2683, 114.1865], coords: [22.2728, 114.1820] }
-];
+// Load locations from separate CSV files
+function loadLocations() {
+    const loadLevel1 = fetch('level1_locations.csv')
+        .then(response => response.text())
+        .then(data => {
+            const lines = data.trim().split('\n');
+            for (let i = 1; i < lines.length; i++) {
+                const [name, lat, lng] = lines[i].split(',');
+                locations.push({ name, coords: [parseFloat(lat), parseFloat(lng)] });
+            }
+        });
+    
+    const loadLevel2 = fetch('level2_locations.csv')
+        .then(response => response.text())
+        .then(data => {
+            const lines = data.trim().split('\n');
+            for (let i = 1; i < lines.length; i++) {
+                const [name, lat, lng, district_lat, district_lng] = lines[i].split(',');
+                level2Locations.push({ 
+                    name, 
+                    coords: [parseFloat(lat), parseFloat(lng)], 
+                    district_coords: [parseFloat(district_lat), parseFloat(district_lng)] 
+                });
+            }
+        });
+    
+    return Promise.all([loadLevel1, loadLevel2]);
+}
 
 // Start new game
 function startNewGame() {
@@ -57,7 +72,7 @@ function startNewGame() {
 // Start level 2
 function startLevel2() {
     gameLevel = 2;
-    gameLocations = [...level2Locations];
+    gameLocations = [...level2Locations].sort(() => Math.random() - 0.5).slice(0, 5);
     currentRound = 0;
     gameResults = [];
     
@@ -70,7 +85,7 @@ function nextRound() {
     if (guessMarker) map.removeLayer(guessMarker);
     if (actualMarker) map.removeLayer(actualMarker);
     
-    var maxRounds = gameLevel === 1 ? 5 : level2Locations.length;
+    var maxRounds = 5;
     if (currentRound >= maxRounds) {
         endGame();
         return;
@@ -82,11 +97,11 @@ function nextRound() {
     if (gameLevel === 1) {
         map.setView([22.3640, 114.1150], 11);
     } else {
-        map.setView(currentLocation.district_coords, 15);
+        map.setView(currentLocation.district_coords, 14);
     }
     
     // Update UI
-    var maxRounds = gameLevel === 1 ? 5 : level2Locations.length;
+    var maxRounds = 5;
     var levelText = gameLevel === 1 ? 'Level 1' : 'Level 2';
     document.getElementById('location-details').innerHTML = `${levelText} - Round ${currentRound + 1}/${maxRounds}: Click on the map where you think <b>${currentLocation.name}</b> is located.`;
     displaySelection('');
@@ -102,7 +117,7 @@ function nextRound() {
 
 // End game
 function endGame() {
-    var maxRounds = gameLevel === 1 ? 5 : level2Locations.length;
+    var maxRounds = 5;
     var levelText = gameLevel === 1 ? 'Level 1' : 'Level 2';
     var resultsHtml = `<h6>${levelText} Results:</h6>`;
     gameResults.forEach((result, i) => {
@@ -127,8 +142,10 @@ function endGame() {
     document.getElementById('refresh-btn').disabled = false;
 }
 
-// Initialize game
-startNewGame();
+// Initialize game after loading locations
+loadLocations().then(() => {
+    startNewGame();
+});
 
 // Game logic - handle map clicks
 map.on('click', function(e) {
@@ -171,7 +188,7 @@ map.on('click', function(e) {
     // Update panel and selection
     var distanceKm = (distance / 1000).toFixed(2);
     
-    var successThreshold = gameLevel === 1 ? 0.6 : 0.2;
+    var successThreshold = gameLevel === 1 ? 0.8 : 0.3;
     if (distanceKm < successThreshold) {
         document.getElementById('location-details').innerHTML = 'You guessed it right!';
     } else {
@@ -185,7 +202,6 @@ map.on('click', function(e) {
     document.getElementById('clicked-coordinates').textContent = coords;
     
     // Record result
-    var successThreshold = gameLevel === 1 ? 0.6 : 0.2;
     var success = distanceKm < successThreshold;
     gameResults.push({
         location: currentLocation.name,

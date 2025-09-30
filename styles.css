@@ -1,0 +1,115 @@
+body { 
+    font-family: Arial, sans-serif; 
+    background: #f4f4f9; 
+    margin: 0; 
+    padding-top: 80px; 
+    padding-left: 20px; 
+    padding-right: 20px; 
+    padding-bottom: 20px; 
+}
+
+.navbar {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    background: white; 
+    padding: 10px 20px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+    z-index: 1000; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.navbar h1 {
+    margin: 0; 
+    color: #007cba;
+}
+
+.navbar h1 a {
+    color: #007cba;
+    text-decoration: none;
+}
+
+.navbar h1 a:hover {
+    color: #005a87;
+}
+
+.navbar a {
+    margin: 0 5px; 
+    padding: 8px 16px; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 5px;
+}
+
+.navbar .game-btn {
+    background: #007cba;
+}
+
+.navbar .study-btn {
+    background: #28a745;
+}
+
+.container { 
+    display: flex; 
+    gap: 20px; 
+    max-width: 1800px; 
+    margin: 0 auto; 
+}
+
+#map { 
+    height: 600px; 
+    width: 70%; 
+}
+
+#info-panel { 
+    width: 30%; 
+    background: white; 
+    padding: 20px; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+}
+
+#refresh-btn { 
+    margin-top: 15px; 
+    padding: 10px 20px; 
+    background: #007cba; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+#refresh-btn:hover { 
+    background: #005a87; 
+}
+
+#refresh-btn:disabled { 
+    background: #ccc; 
+    cursor: not-allowed; 
+}
+
+#selection { 
+    font-size: 1.2em; 
+    margin: 20px 0; 
+    color: #333; 
+    text-align: center; 
+}
+
+#coordinates {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.custom-marker { 
+    background: none; 
+    border: none; 
+}
