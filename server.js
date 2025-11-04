@@ -47,6 +47,18 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/home.html');
 });
 
+// API endpoint for locations
+app.get('/api/locations', async (req, res) => {
+    try {
+        const locations_1 = await Location1.find({});
+        res.json(locations_1);
+        console.log('Retrieved locations:', locations_1);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch locations' });
+        console.log('Error fetching locations:', error);
+    }
+});
+
 app.post('/authenticate', async (req, res) => {
     const { username, password } = req.body;
     

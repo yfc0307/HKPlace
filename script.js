@@ -29,33 +29,22 @@ var currentRound = 0;
 var gameResults = [];
 var gameLevel = 1;
 
-// Load locations from separate CSV files
+// Load locations from MongoDB API
 function loadLocations() {
-    const loadLevel1 = fetch('data/level1_locations.csv')
-        .then(response => response.text())
+    return fetch('/api/locations')
+        .then(response => response.json())
         .then(data => {
-            const lines = data.trim().split('\n');
-            for (let i = 1; i < lines.length; i++) {
-                const [name, lat, lng] = lines[i].split(',');
-                locations.push({ name, coords: [parseFloat(lat), parseFloat(lng)] });
-            }
-        });
-    
-    const loadLevel2 = fetch('data/level2_locations.csv')
-        .then(response => response.text())
-        .then(data => {
-            const lines = data.trim().split('\n');
-            for (let i = 1; i < lines.length; i++) {
-                const [name, lat, lng, district_lat, district_lng] = lines[i].split(',');
-                level2Locations.push({ 
-                    name, 
-                    coords: [parseFloat(lat), parseFloat(lng)], 
-                    district_coords: [parseFloat(district_lat), parseFloat(district_lng)] 
+            data.forEach(location => {
+                locations.push({ 
+                    name: location.name, 
+                    coords: [location.lat, location.lng],
+                    description: location.description
                 });
-            }
+            });
+        })
+        .catch(error => {
+            console.error('Error loading locations:', error);
         });
-    
-    return Promise.all([loadLevel1, loadLevel2]);
 }
 
 // Start new game
