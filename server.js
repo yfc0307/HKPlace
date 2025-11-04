@@ -43,7 +43,7 @@ const locationSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model('User', userSchema);
-const Location = mongoose.model('Location', locationSchema, 'Location_1');
+const Location = mongoose.model('Location_1', locationSchema);
 
 // Routes
 app.get('/', (req, res) => {
