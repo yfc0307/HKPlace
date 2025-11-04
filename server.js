@@ -30,12 +30,11 @@ mongoose.connect(config.mongodb.uri)
 // User schema
 const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now }
+    email: { type: String, required: true }
 });
 
 // Location schema
-const locationSchema = new mongoose.Schema({
+const location1Schema = new mongoose.Schema({
     name: { type: String, required: true },
     lat: { type: Number, required: true },
     lng: { type: Number, required: true },
@@ -43,7 +42,7 @@ const locationSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model('User', userSchema);
-const Location = mongoose.model('Location_1', locationSchema);
+const Location1 = mongoose.model('Location_1', location1Schema);
 
 // Routes
 app.get('/', (req, res) => {
@@ -53,8 +52,9 @@ app.get('/', (req, res) => {
 // API endpoint for locations
 app.get('/api/locations', async (req, res) => {
     try {
-        const locations = await Location.find({});
-        res.json(locations);
+        const locations_1 = await Location1.find({});
+        res.json(locations_1);
+        console.log('Retrieved locations:', locations_1);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch locations' });
     }
