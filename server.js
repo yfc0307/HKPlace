@@ -2,23 +2,28 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
-require('dotenv').config();
+const config = require('./config');
+const port = process.env.PORT || 3000
+
+// Only load .env in development
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.static('.'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'hkplace-secret',
+    secret: config.session.secret,
     resave: false,
     saveUninitialized: false
 }));
 
 // MongoDB Atlas connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/hkplace')
+mongoose.connect(config.mongodb.uri)
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('MongoDB connection error:', err));
 
@@ -65,6 +70,6 @@ app.post('/register', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+app.listen(3000, () => {
+    console.log(`Server running on port 3000`);
 });
