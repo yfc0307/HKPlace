@@ -57,6 +57,7 @@ app.get('/api/locations', async (req, res) => {
         console.log('Retrieved locations:', locations_1);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch locations' });
+        console.log('Error fetching locations:', error);
     }
 });
 
