@@ -22,14 +22,25 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/hkplace')
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('MongoDB connection error:', err));
 
-// User schema
-const userSchema = new mongoose.Schema({
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now }
+// Location schema
+const location1Schema = new mongoose.Schema({
+    name: { type: String, required: true },
+    lat: { type: Number, required: true },
+    lng: { type: Number, required: true },
+    description: { type: String, required: true }
 });
 
-const User = mongoose.model('User', userSchema);
+const location2Schema = new mongoose.Schema({
+    name: { type: String, required: true },
+    lat: { type: Number, required: true },
+    lng: { type: Number, required: true },
+    district_lat: { type: Number, required: true },
+    district_lng: { type: Number, required: true },
+    description: { type: String, required: true }
+});
+
+const Location1 = mongoose.model('Location_1', location1Schema);
+const Location2 = mongoose.model('Location_2', location2Schema);
 
 // Routes
 app.get('/', (req, res) => {
