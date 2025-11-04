@@ -34,11 +34,30 @@ const userSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now }
 });
 
+// Location schema
+const locationSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    lat: { type: Number, required: true },
+    lng: { type: Number, required: true },
+    description: { type: String, required: true }
+});
+
 const User = mongoose.model('User', userSchema);
+const Location = mongoose.model('Location', locationSchema, 'Location 1');
 
 // Routes
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/home.html');
+});
+
+// API endpoint for locations
+app.get('/api/locations', async (req, res) => {
+    try {
+        const locations = await Location.find({});
+        res.json(locations);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch locations' });
+    }
 });
 
 app.post('/authenticate', async (req, res) => {
