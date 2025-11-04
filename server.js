@@ -1,0 +1,70 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const session = require('express-session');
+require('dotenv').config();
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware
+app.use(express.static('.'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'hkplace-secret',
+    resave: false,
+    saveUninitialized: false
+}));
+
+// MongoDB Atlas connection
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/hkplace')
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('MongoDB connection error:', err));
+
+// User schema
+const userSchema = new mongoose.Schema({
+    username: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    createdAt: { type: Date, default: Date.now }
+});
+
+const User = mongoose.model('User', userSchema);
+
+// Routes
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/home.html');
+});
+
+app.post('/authenticate', async (req, res) => {
+    const { username, password } = req.body;
+    
+    try {
+        const user = await User.findOne({ username });
+        if (user && await bcrypt.compare(password, user.password)) {
+            req.session.userId = user._id;
+            res.redirect('/home.html?login=success');
+        } else {
+            res.redirect('/login.html?error=invalid');
+        }
+    } catch (error) {
+        res.redirect('/login.html?error=server');
+    }
+});
+
+app.post('/register', async (req, res) => {
+    const { username, password } = req.body;
+    
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = new User({ username, password: hashedPassword });
+        await user.save();
+        res.redirect('/login.html?registered=true');
+    } catch (error) {
+        res.redirect('/register.html?error=exists');
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});

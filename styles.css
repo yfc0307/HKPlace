@@ -1,11 +1,12 @@
 body { 
-    font-family: Arial, sans-serif; 
-    background: #f4f4f9; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background: linear-gradient(135deg, #00cee9 0%, #1558d4 100%); 
     margin: 0; 
     padding-top: 80px; 
     padding-left: 20px; 
     padding-right: 20px; 
     padding-bottom: 20px; 
+    min-height: 100vh;
 }
 
 .navbar {
@@ -123,4 +124,130 @@ body {
 .custom-marker { 
     background: none; 
     border: none; 
+}
+
+/* Login Page Styles */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    padding: 20px;
+}
+
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-header h2 {
+    color: #007cba;
+    margin: 0 0 8px 0;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.login-header p {
+    color: #666;
+    margin: 0 0 30px 0;
+    font-size: 0.95em;
+}
+
+.login-form {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #333;
+    font-weight: 500;
+    font-size: 0.9em;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #007cba;
+    box-shadow: 0 0 0 3px rgba(0,124,186,0.1);
+}
+
+.form-group input::placeholder {
+    color: #999;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background: #007cba;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    background: #005a87;
+}
+
+.login-footer {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #e1e5e9;
+}
+
+.login-footer p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.register-link {
+    color: #007cba;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.register-link:hover {
+    color: #005a87;
+    text-decoration: underline;
+}
+
+/* Authentication Page Styles */
+.auth-message {
+    text-align: center;
+    padding: 20px;
+}
+
+.auth-message h2 {
+    margin: 0 0 15px 0;
+    font-size: 1.5em;
+}
+
+.auth-message p {
+    color: #666;
+    margin: 0;
+    font-size: 1em;
 }
